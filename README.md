@@ -280,7 +280,7 @@ Input example:
 ```
 #### Responses
 ##### OK, statuscode 200
-If this response occurs, the user has been sucessfylly logged in and aa access token has been returned.   
+If this response occurs, the user has been sucessfylly logged in and an JWT access token for protected endpoints has been returned.   
 
 Response example:    
 ```
