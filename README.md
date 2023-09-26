@@ -288,13 +288,33 @@ Response example:
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJoZWNAbWFpbC5jb20iLCJpYXQiOjE2OTU3NDYyMjMsImV4cCI6MTY5NTc1MzQyM30.T-FUulQew5qrVZ9lTwhOOasFzdBhYEGT_Ybf3mh3KFs"
 }
 ```
-##### Falha na autenticação, statuscode 401
-Caso essa resposta aconteça, alguma falha aconteceu durante a autenticação da requisição.   
-Motivos: senha ou e-mail incorretos.   
+##### Authentication failed, statuscode 401
+If this response occurs, some error occurred during the authentication of the request.
+Reasons: invalid password or email.  
 
 Response example:  
 ```
 {
-    "err": "senha invalida"
+    "err": "wrong email or password"
+}
+```
+##### Data missing, statuscode 404
+If this response occurs, e-mail and/or password may be missing.
+Reasons: missing password or email.  
+
+Response example:  
+```
+{
+    "err": "email or password missing"
+}
+```
+##### Internal failure, statuscode 400
+If this response occurs, somemething went wrong on token generation.
+Reasons: internal failure.  
+
+Response example:  
+```
+{
+    "err": "internal failure"
 }
 ```
