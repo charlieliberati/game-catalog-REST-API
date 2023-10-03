@@ -83,7 +83,7 @@ Response example:
         {
             "href": "http://localhost:8080/game/2",
             "method": "PUT",
-            "rel": "Edit game"
+            "rel": "Update game"
         },
         {
             "href": "http://localhost:8080/auth",
@@ -166,7 +166,7 @@ Response example:
         {
             "href": "http://localhost:8080/game/12",
             "method": "PUT",
-            "rel": "Edit game"
+            "rel": "Update game"
         },
         {
             "href": "http://localhost:8080/auth",
@@ -292,7 +292,7 @@ Response example:
         {
             "href": "http://localhost:8080/game/16",
             "method": "PUT",
-            "rel": "Edit game"
+            "rel": "Update game"
         },
         {
             "href": "http://localhost:8080/auth",
