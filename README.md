@@ -56,7 +56,7 @@ Endpoint responsible for returning the game identified by id in the catalog.
 id: game id must be a number.
 #### Responses
 ##### Game info, statuscode 200
-If this response occurs, a game register identified by the id will be returned in .json format.   
+If this response occurs, a game register identified by the id will be returned in .json format and a list of useful links.   
 
 Response example:   
 ```
@@ -68,7 +68,29 @@ Response example:
         "price": "60",
         "createdAt": "2023-09-19T21:20:21.000Z",
         "updatedAt": "2023-09-19T21:20:21.000Z"
-    }
+    },
+    "_links": [
+        {
+            "href": "http://localhost:8080/games",
+            "method": "GET",
+            "rel": "Geta all games"
+        },
+        {
+            "href": "http://localhost:8080/game/2",
+            "method": "DELETE",
+            "rel": "Delete this game"
+        },
+        {
+            "href": "http://localhost:8080/game/2",
+            "method": "PUT",
+            "rel": "Edit game"
+        },
+        {
+            "href": "http://localhost:8080/auth",
+            "method": "POST",
+            "rel": "Login and athentication"
+        }
+    ]
 }
 ```
 ##### Authentication failed, statuscode 401
@@ -110,18 +132,49 @@ Game title, year and price in json format on the request body.
 Input example:
 ```
 {
-  "title": "Cyberpunk 2077",
-  "year": 2020,
-  "price": 60
+  "title": "Brawlhalla",
+  "year": 2014,
+  "price": 10
 }
 ```
 #### Responses
 ##### OK statuscode 200
-If this response occurs, the game has been sucessfylly registered.   
+If this response occurs, the game has been sucessfylly registered. The game register and useful links will be returned.  
 
 Response example:   
 ```
-OK
+{
+    "game": {
+        "id": 12,
+        "title": "Brawlhalla",
+        "year": "2014",
+        "price": "10",
+        "createdAt": "2023-10-03T20:59:23.000Z",
+        "updatedAt": "2023-10-03T20:59:23.000Z"
+    },
+    "_links": [
+        {
+            "href": "http://localhost:8080/games",
+            "method": "GET",
+            "rel": "Geta all games"
+        },
+        {
+            "href": "http://localhost:8080/game/12",
+            "method": "DELETE",
+            "rel": "Delete this game"
+        },
+        {
+            "href": "http://localhost:8080/game/12",
+            "method": "PUT",
+            "rel": "Edit game"
+        },
+        {
+            "href": "http://localhost:8080/auth",
+            "method": "POST",
+            "rel": "Login and athentication"
+        }
+    ]
+}
 ```
 ##### Registering failed (title already exists), statuscode 409
 If this response occurs, the title sent is aready in use on the database.
@@ -152,11 +205,25 @@ Game id.
 
 #### Responses
 ##### OK statuscode 200
-If this response occurs, the game has been sucessfylly removed.   
+If this response occurs, the game has been sucessfylly removed. A sucess message and a list of useful links will be sent as response.   
 
 Response example:   
 ```
-OK
+{
+    "message": "game sucessfully removed",
+    "_links": [
+        {
+            "href": "http://localhost:8080/games",
+            "method": "GET",
+            "rel": "Geta all games"
+        },
+        {
+            "href": "http://localhost:8080/auth",
+            "method": "POST",
+            "rel": "Login and athentication"
+        }
+    ]
+}
 ```
 ##### Game not found, statuscode 404
 If this response occurs, the id sent doesn't match any game registered on the database.
@@ -185,12 +252,12 @@ Game id on the URL; game title, year and price in json format on the request bod
 
 Input example:
 ```
-.../game/11
+.../game/16
 ```
 and
 ```
 {
-  "title": "Cyberpunk 2077: Phantom Liberty",
+  "title": "Cyberpunk 2077: Phantom Liberty (expansion)",
   "year": 2023,
   "price": 99
 }
@@ -198,11 +265,42 @@ and
 
 #### Responses
 ##### OK statuscode 200
-If this response occurs, the game has been sucessfylly updated.   
+If this response occurs, the game has been sucessfylly updated. 
 
 Response example:   
 ```
-OK
+{
+    "game": {
+        "id": 16,
+        "title": "Cyberpunk 2077: Phantom Liberty (expansion)",
+        "year": "2023",
+        "price": "99",
+        "createdAt": "2023-10-03T21:07:16.000Z",
+        "updatedAt": "2023-10-03T21:29:45.000Z"
+    },
+    "_links": [
+        {
+            "href": "http://localhost:8080/games",
+            "method": "GET",
+            "rel": "Geta all games"
+        },
+        {
+            "href": "http://localhost:8080/game/16",
+            "method": "DELETE",
+            "rel": "Delete this game"
+        },
+        {
+            "href": "http://localhost:8080/game/16",
+            "method": "PUT",
+            "rel": "Edit game"
+        },
+        {
+            "href": "http://localhost:8080/auth",
+            "method": "POST",
+            "rel": "Login and athentication"
+        }
+    ]
+}
 ```
 ##### Game not found, statuscode 404
 If this response occurs, the id sent doesn't match any game registered on the database.
